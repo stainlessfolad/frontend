@@ -1,7 +1,6 @@
 import {
   AppBar,
   Box,
-  CssBaseline,
   Toolbar,
   IconButton,
   Button,
@@ -17,31 +16,28 @@ function NavBar() {
   const theme = useTheme();
 
   return (
-    <>
-      <CssBaseline />
-      <AppBar component="nav" position="sticky">
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            // onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <NavLogo color={theme.palette.primary.contrastText} />
+    <AppBar component="nav" position="sticky">
+      <Toolbar>
+        <IconButton
+          color="inherit"
+          aria-label="open drawer"
+          edge="start"
+          // onClick={handleDrawerToggle}
+          sx={{ mr: 2, display: { sm: "none" } }}
+        >
+          <MenuIcon />
+        </IconButton>
+        <NavLogo color={theme.palette.primary.contrastText} />
 
-          <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            {navItems.map((item) => (
-              <Button key={item} sx={{ color: "primary.contrastText" }}>
-                {item}
-              </Button>
-            ))}
-          </Box>
-        </Toolbar>
-      </AppBar>
-    </>
+        <Box sx={{ display: { xs: "none", sm: "block" } }}>
+          {navItems.map((item) => (
+            <Button key={item} sx={{ color: "primary.contrastText" }}>
+              {item}
+            </Button>
+          ))}
+        </Box>
+      </Toolbar>
+    </AppBar>
   );
 }
 export default NavBar;
