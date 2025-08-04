@@ -1,5 +1,4 @@
 import { Box, Typography, Grid } from "@mui/material";
-import NavBar from "../../components/NavBar";
 import Header from "./Header";
 import ProductSlideshow from "./ProductSlideshow";
 import UsecaseCard from "../../components/UsecaseCard";
@@ -9,12 +8,11 @@ import { steelUsecase } from "../../model/steel_usecase";
 
 function HomePage() {
   return (
-    <div>
-      <NavBar />
+    <>
       <Header />
       <ProductUsecase />
       <ProductSlideshow />
-    </div>
+    </>
   );
 }
 export default HomePage;
