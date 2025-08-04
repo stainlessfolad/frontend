@@ -97,10 +97,9 @@ function TubeLight({
 
   return (
     <Stack
-      direction="row"
+      direction="row-reverse"
       spacing="-1px"
       sx={{
-        direction: "ltr",
         width,
         height,
         top: 0,
