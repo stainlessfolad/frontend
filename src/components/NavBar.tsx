@@ -10,7 +10,11 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 
-const navItems = ["Products", "Pricing", "Contact"];
+const navItems = [
+  { title: "محصولات", path: "/products", disabled: true },
+  { title: "قیمت گذاری", path: "/pricing", disabled: true },
+  { title: "تماس با ما", path: "/contact-us", disabled: false },
+];
 
 function NavBar() {
   const theme = useTheme();
@@ -31,8 +35,13 @@ function NavBar() {
 
         <Box sx={{ display: { xs: "none", sm: "block" } }}>
           {navItems.map((item) => (
-            <Button key={item} sx={{ color: "primary.contrastText" }}>
-              {item}
+            <Button
+              key={item.path}
+              href={item.path}
+              disabled={item.disabled}
+              sx={{ color: "primary.contrastText" }}
+            >
+              {item.title}
             </Button>
           ))}
         </Box>
@@ -62,7 +71,7 @@ function NavLogo({ color = "#fff" }: { color?: string }) {
               pl: 1,
             }}
           >
-            Gsteel Products
+            بازرگانی استیل
           </Typography>
         </Stack>
       </a>
