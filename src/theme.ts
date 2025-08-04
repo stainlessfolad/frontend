@@ -2,15 +2,16 @@ import { createTheme } from "@mui/material/styles";
 import Vazir from "/fonts/Vazir.woff";
 
 export const theme = createTheme({
+  direction: "rtl",
   palette: {
     primary: {
       main: "#1E55B3",
     },
     secondary: {
-      main: "#2C8986",
+      main: "#1a7975ff",
     },
     background: {
-      default: "#F1F1E6",
+      default: "#f5fbfdff",
     },
   },
   typography: {
@@ -24,6 +25,16 @@ export const theme = createTheme({
           src: url(${Vazir}) format('woff');
         }
       `,
+    },
+    MuiButton: {
+      styleOverrides: {
+        // TODO: Find a way to change color on hover
+        // contained: {
+        //   "&:hover": {
+        //     backgroundColor: "#000"
+        //   }
+        // }
+      },
     },
   },
 });
