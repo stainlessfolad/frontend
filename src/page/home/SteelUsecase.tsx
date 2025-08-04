@@ -1,5 +1,5 @@
 import { Box, Grid, Typography } from "@mui/material";
-import UsecaseCard from "../../components/steel_usecase/UsecaseCard";
+import UsecaseCard from "../../components/UsecaseCard";
 import { type SteelUsecaseInterface } from "../../model/steel_usecase_interface";
 import { steelUsecase } from "../../model/steel_usecase";
 
