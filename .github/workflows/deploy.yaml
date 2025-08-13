@@ -35,13 +35,13 @@ jobs:
           script: |
             set -e
             echo Pull Image
-            docker pull ${DOCKER_REGISTRY}/stainlessfolad-front:latest
+            docker pull ${{ secrets.DOCKER_REGISTRY }}/stainlessfolad-front:latest
             echo Remove Old Stuff
             docker image prune -f
             rm -rf /var/www/html/*
             echo Deploy New Changes
             mkdir -p /var/nodejs
-            docker run --rm -v /var/nodejs:/app/dist ${DOCKER_REGISTRY}/stainlessfolad-front
+            docker run --rm -v /var/nodejs:/app/dist ${{ secrets.DOCKER_REGISTRY }}/stainlessfolad-front
             mv /var/nodejs/* /var/www/html/
             systemctl restart nginx.service
             echo Clean Up
