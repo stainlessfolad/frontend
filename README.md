@@ -1,69 +1,109 @@
-# React + TypeScript + Vite
+# StainlessFolad Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the **StainlessFolad Frontend** project!  
+This repository contains the source code for the web interface of StainlessFolad, designed for performance, scalability, and a seamless user experience.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Overview
 
-## Expanding the ESLint configuration
+StainlessFolad Frontend is a modern web application built to deliver a robust and responsive UI for managing and interacting with StainlessFolad services.  
+It is containerized for easy deployment and integrates smoothly with backend APIs.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🛠️ Technologies Used
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- **React** 
+  For building interactive user interfaces.
+- **TypeScript**  
+  Ensures type safety and better developer experience.
+- **Docker**  
+  Containerizes the application for consistent deployments.
+- **GitHub Actions**  
+  Automates CI/CD for building, testing, and deploying.
+- **Nginx**  
+  Serves the frontend and handles static assets. Configurations are not included in the repo.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## 📦 Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (v18+ recommended)
+- [Docker](https://www.docker.com/)
+- [Yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/)
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/stainlessfolad/frontend.git
+cd frontend
+
+# Install dependencies
+npm install   # or yarn install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Development
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+# Start the development server
+npm run dev   # or yarn run dev
 ```
+
+### Build for Production
+
+```bash
+npm run build   # or yarn build
+```
+
+### Docker
+
+```bash
+# Build Docker image
+docker build -t stainlessfolad-front .
+
+# Run the container
+docker run --rm -v /path/on/your/host:/app/dist stainlessfolad-front
+```
+
+---
+
+## ⚙️ Deployment
+
+This project uses **GitHub Actions** for automated deployment.  
+On every push to the `main` branch, the workflow builds the Docker image, pushes it to your registry, and deploys it to your server via SSH.
+
+See [`.github/workflows/deploy.yaml`](./.github/workflows/deploy.yaml) for details.
+
+---
+
+<!-- ## 📚 Documentation
+
+- [Project Wiki](https://github.com/stainlessfolad/frontend/wiki)
+- [API Reference](./docs/api.md)
+
+--- -->
+
+## 🤝 Contributing
+
+Contributions are welcome!  
+Please read our [Contributing Guidelines](./CONTRIBUTING.md) before submitting issues or pull requests.
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](./LICENSE).
+
+---
+
+## 💡 Contact
+
+For questions or support, open an issue or reach out at [dev@stainlessfolad.ir](mailto:dev@stainlessfolad.ir).
+
+---
+
+*Thank you for
