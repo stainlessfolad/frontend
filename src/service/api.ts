@@ -8,7 +8,7 @@ const api = axios.create({
 
 export const getProducts = async () => {
   try {
-    const res = await api.get("products");
+    const res = await api.get("products/");
     const data = res.data as Product[];
     if (data == null) throw new Error("missing product info");
     return data;
@@ -22,12 +22,14 @@ export const getProducts = async () => {
 
 export const postMessage = async (data: Message) => {
   try {
-    const res = await api.post("messages", data);
+    const res = await api.post("messages/", JSON.stringify(data), {
+      headers: { "Content-Type": "application/json" },
+    });
     if (res.status == 201) {
       console.log("Message Sent successfully!");
       return true;
     } else {
-      throw new Error("Form submission failed!");
+      throw new Error("Error Code: " + res.statusText);
     }
   } catch (err) {
     if (err instanceof Error)
