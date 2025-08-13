@@ -21,6 +21,8 @@ import {
 import { useFormik } from "formik";
 import * as yup from "yup";
 import type { ChangeEvent } from "react";
+import { postMessage } from "../../service/api";
+import type Message from "../../model/message";
 
 function ContactUsPage() {
   const theme = useTheme();
@@ -68,22 +70,29 @@ function ContactForm() {
     text: yup.string().required("الزامی"),
   });
 
-  const formik = useFormik({
+  const formik = useFormik<Message>({
     initialValues: {
       name: "",
       phone: "",
       text: "",
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      console.log("onSubmit");
-      console.log(JSON.stringify(values));
+    onSubmit: async (data: Message) => {
+      try {
+        const res = await postMessage(data);
+        if (res) {
+          alert("Message Sent");
+        }
+      } catch (err) {
+        if (err instanceof Error) {
+          alert(err.message);
+        }
+      }
     },
   });
 
   // Phone
   const handlePhoneChange = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log("check number");
     const persianNumbers: Record<string, string> = {
       "۰": "0",
       "۱": "1",
