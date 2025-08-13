@@ -1,0 +1,50 @@
+name: Deploy To Server
+
+on:
+  push:
+    branches: [main]
+
+env:
+    DOCKER_REGISTRY: ${{ secrets.DOCKER_REGISTRY }}
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v5
+
+      - name: Login Docker Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ secrets.DOCKER_REGISTRY }}
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build & Push
+        run: |
+          docker build -t ${DOCKER_REGISTRY}/stainlessfolad-front .
+          docker image push ${DOCKER_REGISTRY}/stainlessfolad-front:latest
+
+      - name: SSH Server
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            set -e
+            echo Pull Image
+            docker pull ${DOCKER_REGISTRY}/stainlessfolad-front:latest
+            echo Remove Old Stuff
+            docker image prune -f
+            rm -rf /var/www/html/*
+            echo Deploy New Changes
+            mkdir -p /var/nodejs
+            docker run --rm -v /var/nodejs:/app/dist ${DOCKER_REGISTRY}/stainlessfolad-front
+            mv /var/nodejs/* /var/www/html/
+            systemctl restart nginx.service
+            echo Clean Up
+            rm -r /var/nodejs
+            echo Frontend Deployed Successfully
+            exit 0
