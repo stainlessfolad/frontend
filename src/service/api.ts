@@ -24,12 +24,11 @@ export const postMessage = async (data: Message) => {
   try {
     const res = await api.post("messages/", JSON.stringify(data), {
       headers: { "Content-Type": "application/json" },
+      withXSRFToken: true,
     });
     if (res.status == 201) {
       console.log("Message Sent successfully!");
       return true;
-    } else {
-      throw new Error("Error Code: " + res.statusText);
     }
   } catch (err) {
     if (err instanceof Error)
