@@ -7,6 +7,9 @@ import {
   useTheme,
   Stack,
   Typography,
+  lighten,
+  alpha,
+  darken,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 
@@ -20,8 +23,16 @@ function NavBar() {
   const theme = useTheme();
 
   return (
-    <AppBar component="nav" position="sticky">
+    <AppBar
+      component="nav"
+      position="sticky"
+      sx={{
+        background: alpha(lighten(theme.palette.primary.main, 0.7), 0.7),
+        backdropFilter: "blur(5px)",
+      }}
+    >
       <Toolbar>
+        {/* Mobile Menu Button */}
         <IconButton
           color="inherit"
           aria-label="open drawer"
@@ -31,15 +42,48 @@ function NavBar() {
         >
           <MenuIcon />
         </IconButton>
-        <NavLogo color={theme.palette.primary.contrastText} />
 
+        {/* Logo Brand */}
+        <Box sx={{ flexGrow: 1 }}>
+          <a href="/">
+            <Stack
+              direction="row"
+              sx={{
+                display: "inline-flex",
+                alignItems: "center",
+              }}
+            >
+              <Box
+                component="img"
+                src="/steel_babak_icon.svg"
+                sx={{ height: 50 }}
+              />
+              <Typography
+                variant="h5"
+                sx={{
+                  display: { xs: "none", sm: "inline" },
+                  color: darken(theme.palette.primary.main, 0.85),
+                  pl: 1,
+                }}
+              >
+                بازرگانی استیل بابک
+              </Typography>
+            </Stack>
+          </a>
+        </Box>
+
+        {/* Button Group */}
         <Box sx={{ display: { xs: "none", sm: "block" } }}>
           {navItems.map((item) => (
             <Button
               key={item.path}
               href={item.path}
               disabled={item.disabled}
-              sx={{ color: "primary.contrastText" }}
+              variant="contained"
+              sx={{
+                mx: 1,
+                borderRadius: 50,
+              }}
             >
               {item.title}
             </Button>
@@ -50,31 +94,3 @@ function NavBar() {
   );
 }
 export default NavBar;
-
-function NavLogo({ color = "#fff" }: { color?: string }) {
-  return (
-    <Box sx={{ flexGrow: 1 }}>
-      <a href="/">
-        <Stack
-          direction="row"
-          sx={{
-            display: "inline-flex",
-            alignItems: "center",
-          }}
-        >
-          {/* <Logo fill={color} height={40} /> */}
-          <Typography
-            variant="h6"
-            sx={{
-              display: { xs: "none", sm: "inline" },
-              color: color,
-              pl: 1,
-            }}
-          >
-            بازرگانی استیل
-          </Typography>
-        </Stack>
-      </a>
-    </Box>
-  );
-}
