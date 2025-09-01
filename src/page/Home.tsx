@@ -90,6 +90,43 @@ function HomePage() {
 }
 export default HomePage;
 
+// Headline Component
+function Headline({
+  title,
+  description,
+}: {
+  title: string;
+  description?: string;
+}) {
+  return (
+    <Stack
+      component="div"
+      sx={{
+        marginY: 8,
+        alignItems: "center",
+        maxWidth: { xs: "100%", sm: "80%" },
+        marginX: "auto",
+      }}
+    >
+      <Typography
+        variant="h4"
+        sx={{ mb: 2, textAlign: "center", fontWeight: "bold" }}
+      >
+        {title}
+      </Typography>
+      <Typography
+        variant="body1"
+        sx={{
+          textAlign: "center",
+        }}
+      >
+        {description}
+      </Typography>
+    </Stack>
+  );
+}
+
+// Header Component
 function Header() {
   return (
     <Box
@@ -190,19 +227,21 @@ function Tubelight({ reverse = false }: { reverse?: boolean }) {
   );
 }
 
+// Product Usecase Component
 function ProductUsecase() {
   return (
-    <Box sx={{ marginX: 4, marginY: 12 }}>
-      <Typography
-        variant="h4"
-        sx={{ marginY: 6, textAlign: "center", fontWeight: "bold" }}
-      >
-        کاربرد گسترده ورق استیل
-      </Typography>
-
+    <Container sx={{ marginY: 12 }}>
+      <Headline
+        title="کاربرد گسترده ورق استیل"
+        description="ورق استنلس استیل نوعی ورق فولادی مقاوم است که از ترکیب آهن با عناصری چون
+        کربن و کروم ساخته می‌شود. این ورق‌ها علاوه بر شکل‌پذیری و قابلیت
+        جوشکاری، مقاومت بالایی در برابر دماهای بسیار بالا و پایین (از ۲۰۰- تا
+        ۱۰۰۰+ درجه سانتی‌گراد) دارند. همین ویژگی‌ها باعث شده ورق استیل به
+        گزینه‌ای پرکاربرد در صنایع مختلف تبدیل شود."
+      />
       <Grid container spacing={3} columns={4}>
         {steelUsecase.map((item: SteelUsecaseInterface, index: number) => (
-          <Grid size={{ sm: 4, md: 2, lg: item.cta ? 2 : 1 }} key={index}>
+          <Grid size={{ xs: 4, md: 2, lg: item.cta ? 2 : 1 }} key={index}>
             <Card
               elevation={2}
               sx={{
@@ -236,12 +275,11 @@ function ProductUsecase() {
                   component="img"
                   sx={{
                     position: "relative",
-                    display: "flex",
+                    display: { xs: "none", md: "flex" },
                     height: "100%",
                     // width: "14rem",
                     objectFit: "cover",
                     // right: "4rem",
-
                     WebkitMask:
                       "linear-gradient(to right, #000 75%, transparent)",
                   }}
@@ -253,19 +291,21 @@ function ProductUsecase() {
           </Grid>
         ))}
       </Grid>
-    </Box>
+    </Container>
   );
 }
 
+// Product Carousel Component
 function ProductCarousel({ products }: { products: Product[] }) {
   return (
-    <Container sx={{ py: 4 }}>
-      <Typography
-        variant="h4"
-        sx={{ marginY: 6, textAlign: "center", fontWeight: "bold" }}
-      >
-        جدیدترین محصولات استیل
-      </Typography>
+    <Container sx={{ marginY: 12 }}>
+      <Headline
+        title="جدیدترین محصولات استیل"
+        description="استیل بابک یکی از معتبرترین مراکز خرید آنلاین محصولات استیل در ایران است. این مجموعه
+        همواره تلاش می‌کند محصولات باکیفیت و استاندارد را با قیمت رقابتی در اختیار مشتریان قرار دهد.
+        تنوع بالای محصولات، تضمین اصالت کالا و رعایت حقوق خریداران از مهم‌ترین اصول استیل بابک است. اگر به دنبال خرید ورق استیل مقاوم،
+        کویل استیل ضدزنگ یا سایر محصولات استنلس استیل هستید، استیل بابک انتخابی مطمئن برای صنایع و پروژه‌های مختلف خواهد بود."
+      />
       <Swiper
         autoplay={{
           delay: 3000,
