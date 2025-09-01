@@ -21,8 +21,8 @@ import {
 import { useFormik } from "formik";
 import * as yup from "yup";
 import type { ChangeEvent } from "react";
-import { postMessage } from "../../service/api";
-import type Message from "../../model/message";
+import { postMessage } from "../service/api";
+import type Message from "../model/message";
 
 function ContactUsPage() {
   const theme = useTheme();
