@@ -78,7 +78,7 @@ function Header() {
       {/* Picture Side */}
       <Box
         component="img"
-        src="/public/images/header_rolled_steel_and_sheets.webp"
+        src="/images/header_rolled_steel_and_sheets.webp"
         alt="Rolled Steel and Sheets"
         sx={{
           objectFit: "cover",
