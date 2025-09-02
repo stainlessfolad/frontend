@@ -395,7 +395,6 @@ function ProductCarousel({ products }: { products: Product[] }) {
 }
 
 function ShopBenefits() {
-  const theme = useTheme();
   function BenefitCard({
     icon,
     title,
