@@ -3,7 +3,7 @@ import type Product from "../model/product";
 import type Message from "../model/message";
 
 const api = axios.create({
-  baseURL: "https://stainlessfolad.ir/api/",
+  baseURL: "https://steelbabak.ir/api/",
 });
 
 export const getProducts = async () => {
