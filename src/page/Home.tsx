@@ -13,7 +13,9 @@ import {
   Button,
   lighten,
   useTheme,
+  Icon,
 } from "@mui/material";
+import { AttachMoney, ReceiptLong, LocalShipping } from "@mui/icons-material";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
@@ -85,6 +87,8 @@ function HomePage() {
       <ProductUsecase />
       {/* Product Carousel Section */}
       <ProductCarousel products={products} />
+      {/* Shop Benefits Section */}
+      <ShopBenefits />
     </>
   );
 }
@@ -102,7 +106,7 @@ function Headline({
     <Stack
       component="div"
       sx={{
-        marginY: 8,
+        marginY: 5,
         alignItems: "center",
         maxWidth: { xs: "100%", sm: "80%" },
         marginX: "auto",
@@ -110,7 +114,8 @@ function Headline({
     >
       <Typography
         variant="h4"
-        sx={{ mb: 2, textAlign: "center", fontWeight: "bold" }}
+        gutterBottom
+        sx={{ textAlign: "center", fontWeight: "bold" }}
       >
         {title}
       </Typography>
@@ -128,6 +133,22 @@ function Headline({
 
 // Header Component
 function Header() {
+  function Tubelight({ reverse = false }: { reverse?: boolean }) {
+    const theme = useTheme();
+    return (
+      <Box
+        sx={{
+          flexGrow: 1,
+          transform: reverse ? "scaleX(-1)" : undefined,
+          background: `conic-gradient(
+              from 90deg at 60px 0%,
+              ${lighten(theme.palette.primary.main, 0.85)} 105deg,
+              transparent 125deg
+            )`,
+        }}
+      />
+    );
+  }
   return (
     <Box
       component="header"
@@ -208,22 +229,6 @@ function Header() {
         }}
       />
     </Box>
-  );
-}
-function Tubelight({ reverse = false }: { reverse?: boolean }) {
-  const theme = useTheme();
-  return (
-    <Box
-      sx={{
-        flexGrow: 1,
-        transform: reverse ? "scaleX(-1)" : undefined,
-        background: `conic-gradient(
-              from 90deg at 60px 0%,
-              ${lighten(theme.palette.primary.main, 0.85)} 105deg,
-              transparent 125deg
-            )`,
-      }}
-    />
   );
 }
 
@@ -385,6 +390,66 @@ function ProductCarousel({ products }: { products: Product[] }) {
           </SwiperSlide>
         ))}
       </Swiper>
+    </Container>
+  );
+}
+
+function ShopBenefits() {
+  const theme = useTheme();
+  function BenefitCard({
+    icon,
+    title,
+    description,
+  }: {
+    icon: React.ReactNode;
+    title: string;
+    description: string;
+  }) {
+    return (
+      <Grid direction="column" size={{ xs: 12, md: 4 }} sx={{ mx: "auto" }}>
+        <Box
+          component="div"
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            pb: 1,
+          }}
+        >
+          <Icon sx={{ color: "secondary.dark", mr: 1 }}>{icon}</Icon>
+          <Typography variant="h5" color="text.main">
+            {title}
+          </Typography>
+        </Box>
+        <Typography variant="body1" color="text.secondary">
+          {description}
+        </Typography>
+      </Grid>
+    );
+  }
+  return (
+    <Container sx={{ marginY: 12 }}>
+      <Typography variant="h4" fontWeight="bold" paddingBottom={3}>
+        مزایای خرید از استیل بابک
+      </Typography>
+
+      <Grid container direction={{ xs: "column", sm: "row" }} spacing={4}>
+        <BenefitCard
+          icon={<AttachMoney />}
+          title="قیمت رقابتی و خرید مستقیم"
+          description="استیل بابک با واردات مستقیم انواع ورق استیل و کویل استنلس استیل، محصولات خود را بدون واسطه و با قیمت کاملاً رقابتی در اختیار مشتریان قرار می‌دهد. این یعنی شما می‌توانید با هزینه کمتر، بهترین کیفیت را دریافت کنید و خریدی مطمئن و اقتصادی داشته باشید."
+        />
+        <BenefitCard
+          icon={<ReceiptLong />}
+          title="تضمین کیفیت و اصالت کالا"
+          description="تمامی محصولات ارائه‌شده توسط استیل بابک دارای گواهی اصالت و مطابق با استانداردهای جهانی هستند. ورق‌ها و کویل‌های استیل این مجموعه مقاومت بالا، دوام طولانی و کیفیت تضمین‌شده دارند تا خیال مشتریان از نظر استحکام و کارایی راحت باشد."
+        />
+        <BenefitCard
+          icon={<LocalShipping />}
+          title="ارسال سریع و پشتیبانی تخصصی"
+          description="یکی از بزرگ‌ترین مزایای خرید از استیل بابک، سرعت در آماده‌سازی و ارسال سفارش به سراسر کشور است. علاوه بر این، تیم پشتیبانی متخصص آماده پاسخگویی به سوالات و ارائه مشاوره برای انتخاب بهترین نوع ورق یا کویل استیل بر اساس نیاز پروژه شما است."
+        />
+      </Grid>
     </Container>
   );
 }
