@@ -338,7 +338,7 @@ function ProductCarousel({ products }: { products: Product[] }) {
             >
               <Box
                 component="img"
-                src={`https://stainlessfolad.ir${product.picture}`} // TODO: Fix path in backend
+                src={`https://steelbabak.ir${product.picture}`} // TODO: Fix path in backend
                 alt={product.name}
                 sx={{
                   borderRadius: 4,
