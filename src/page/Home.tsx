@@ -6,7 +6,6 @@ import Hero from "../components/home/Hero";
 import ProductUsecaseSection from "../components/home/ProductUsecaseSection";
 import ProductCarouselSection from "../components/home/ProductCarouselSection";
 import ShopBenefitsSection from "../components/home/ShopBenefitsSection";
-import Footer from "../components/Footer";
 
 function HomePage() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -24,7 +23,6 @@ function HomePage() {
       <ProductUsecaseSection />
       <ProductCarouselSection products={products} />
       <ShopBenefitsSection />
-      <Footer />
     </>
   );
 }

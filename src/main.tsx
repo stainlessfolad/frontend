@@ -9,6 +9,7 @@ import { prefixer } from "stylis";
 import rtlPlugin from "@mui/stylis-plugin-rtl";
 import { CacheProvider } from "@emotion/react";
 import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
 
 // Create rtl cache
 const rtlCache = createCache({
@@ -29,6 +30,7 @@ createRoot(document.getElementById("root")!).render(
         >
           <NavBar />
           <RouterProvider router={router} />
+          <Footer />
         </Box>
       </ThemeProvider>
     </CacheProvider>
