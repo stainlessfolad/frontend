@@ -8,7 +8,7 @@ export const router = createBrowserRouter([
     Component: HomePage,
   },
   {
-    path: "/contact-us",
+    path: "/contact",
     Component: ContactUsPage,
   },
 ]);
