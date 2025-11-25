@@ -1,5 +1,6 @@
 import { createTheme } from "@mui/material/styles";
-import Vazir from "/fonts/Vazir.woff";
+import VazirWoff2 from "/fonts/Vazir.woff2";
+import VazirTtf from "/fonts/Vazir.ttf";
 
 const primaryGradient =
   "linear-gradient(120deg, #ff5c33 0%, #ff8941 55%, #ffc878 100%)";
@@ -49,7 +50,7 @@ export const theme = createTheme({
     borderRadius: 8,
   },
   typography: {
-    fontFamily: "Vazir",
+    fontFamily: "Vazir, VazirMatn, 'Segoe UI', sans-serif",
     fontWeightRegular: 400,
     fontWeightMedium: 600,
     h1: {
@@ -68,8 +69,12 @@ export const theme = createTheme({
       styleOverrides: `
         @font-face {
           font-family: 'Vazir';
-          src: url(${Vazir}) format('woff');
+          src: url(${VazirWoff2}) format('woff2'),
+            url(${VazirTtf}) format('truetype'),
+            local('VazirMatn');
           font-weight: 400;
+          font-style: normal;
+          font-display: swap;
         }
       `,
     },
