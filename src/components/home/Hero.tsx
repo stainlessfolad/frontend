@@ -7,6 +7,7 @@ import {
   useTheme,
   lighten,
 } from "@mui/material";
+import HeroImg from "/images/header_rolled_steel_and_sheets.webp";
 
 const stats = [
   { value: "30+", label: "سفارشات تحویل داده شده" },
@@ -176,7 +177,7 @@ function Hero() {
         >
           <Box
             component="img"
-            src="/images/header_rolled_steel_and_sheets.webp"
+            src={HeroImg}
             alt="Rolled Steel and Sheets"
             sx={{
               width: "100%",
