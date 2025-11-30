@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { getProducts } from "../service/api";
 import type Product from "../model/product";
-import SEOMetaTags from "../components/SEOMetaTags";
 import Hero from "../components/home/Hero";
 import ProductUsecaseSection from "../components/home/ProductUsecaseSection";
 import ProductCarouselSection from "../components/home/ProductCarouselSection";
@@ -18,7 +17,6 @@ function HomePage() {
 
   return (
     <>
-      <SEOMetaTags />
       <Hero />
       <ProductUsecaseSection />
       <ProductCarouselSection products={products} />
